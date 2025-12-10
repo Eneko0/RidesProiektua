@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Login</title>
+</h:head>
+<h:body>
+    <h:form id="loginForm">
+        <h3>Login</h3>
+        <table>
+            <tr>
+                <td>Izena:</td>
+                <td><h:inputText id="izena" value="#{loginBean.izena}" required="true"/></td>
+            </tr>
+            <tr>
+                <td>Pasahitza:</td>
+                <td><h:inputSecret id="pasahitza" value="#{loginBean.pasahitza}" required="true"/></td>
+            </tr>
+        </table>
+        <p>
+            <h:commandButton value="Login" action="#{loginBean.login}" />
+        </p>
+        <h:messages id="mezuak" style="color:red"/>
+    </h:form>
+    <h:button value="Itxi" outcome="/Index.xhtml" />
+</h:body>
+</html>

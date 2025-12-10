@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Erregistratu</title>
+</h:head>
+<h:body>
+    <h:form id="registerForm">
+        <h3>Erregistratu</h3>
+        <table>
+            <tr>
+                <td>Izena:</td>
+                <td><h:inputText id="izena" value="#{registerBean.izena}" required="true" /></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><h:inputText id="email" value="#{registerBean.email}" required="true" /></td>
+            </tr>
+            <tr>
+                <td>Pasahitza:</td>
+                <td><h:inputSecret id="pasahitza" value="#{registerBean.pasahitza}" required="true" /></td>
+            </tr>
+        </table>
+        <p>
+            <h:commandButton value="Erregistratu" action="#{registerBean.erregistratu}" />
+        </p>
+        <h:messages id="mezuak" style="color:red" />
+    </h:form>
+    <h:button value="Itxi" outcome="/Index.xhtml" />
+</h:body>
+</html>
