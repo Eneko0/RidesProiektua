@@ -13,6 +13,8 @@ import configuration.UtilDate;
 
 import domain.Driver;
 import domain.Ride;
+import domain.Traveler;
+import domain.User;
 import eredua.JPAUtil;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -141,37 +143,47 @@ public class HibernateDataAccess {
 		}
 	}
 
-	public Driver checkLogin(String name, String password) {
-		EntityManager em = JPAUtil.getEntityManager();
-		try {
-			System.out.println(">> DataAccess: checkLogin");
-			TypedQuery<Driver> query = em.createQuery("SELECT r FROM Driver r WHERE r.name=?1 AND r.password=?2",
-					Driver.class);
-			query.setParameter(1, name);
-			query.setParameter(2, password);
-			List<Driver> driverList = query.getResultList();
-			return driverList.isEmpty() ? null : driverList.get(0);
-		} finally {
-			if (em.isOpen())
-				em.close();
-		}
+	public User checkLogin(String name, String password) {
+	    EntityManager em = JPAUtil.getEntityManager();
+	    try {
+	        TypedQuery<User> query = em.createQuery(
+	            "SELECT u FROM User u WHERE u.name = :name AND u.password = :password", User.class);
+	        query.setParameter("name", name);
+	        query.setParameter("password", password);
+	        List<User> userList = query.getResultList();
+	        return userList.isEmpty() ? null : userList.get(0);
+	    } finally {
+	        if (em.isOpen())
+	            em.close();
+	    }
 	}
 
-	public Driver register(String name, String email, String password) {
+
+	public User register(String name, String email, String password, String mota) {
 		EntityManager em = JPAUtil.getEntityManager();
 		try {
 			em.getTransaction().begin();
-			TypedQuery<Driver> query = em.createQuery("SELECT r FROM Driver r WHERE r.name=?1 OR r.email=?2",
-					Driver.class);
+			TypedQuery<User> query = em.createQuery("SELECT r FROM User r WHERE r.name=?1 OR r.email=?2",
+					User.class);
 			query.setParameter(1, name);
 			query.setParameter(2, email);
-			List<Driver> driverList = query.getResultList();
+			List<User> userList = query.getResultList();
 
-			if (driverList.isEmpty()) {
-				Driver dri = new Driver(email, name, password);
-				em.persist(dri);
-				em.getTransaction().commit();
-				return (dri);
+			if (userList.isEmpty()) {
+				if (mota.equals("Driver")) {
+					User dri = new Driver(email, name, password);
+					em.persist(dri);
+					em.getTransaction().commit();
+					return (dri);
+				} else if (mota.equals("Traveler")) {
+					User trv = new Traveler(email, name, password);
+					em.persist(trv);
+					em.getTransaction().commit();
+					return (trv);
+				} else {
+					return (null);
+				}
+				
 			} else {
 				em.getTransaction().commit();
 				return (null);

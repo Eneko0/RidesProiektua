@@ -8,13 +8,14 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import domain.Driver;
+import domain.User;
 
 @Named("loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private Driver driver = null;
+    private User user = null;
     private String izena;
     private String pasahitza;
 
@@ -26,10 +27,15 @@ public class LoginBean implements Serializable {
     public void setPasahitza(String pasahitza) { this.pasahitza = pasahitza; }
 
     public String login() {
-        Driver erabiltzailea = facade.checkLogin(izena, pasahitza);
+        User erabiltzailea = facade.checkLogin(izena, pasahitza);
         if(erabiltzailea != null) {
-        	driver = erabiltzailea;
-            return "DriverPanel?faces-redirect=true";
+        	this.user = erabiltzailea;
+        	if (erabiltzailea.getMota().equals("Driver")) {
+        		return "DriverPanel?faces-redirect=true";
+        	} else {
+        		return "TravelerPanel?faces-redirect=true";
+        	}
+            
         } else {
         	FacesContext.getCurrentInstance().addMessage(
 	            null,
@@ -38,10 +44,10 @@ public class LoginBean implements Serializable {
             return null;
         }
     }
-	public Driver getDriver() {
-		return driver;
+	public User getUser() {
+		return user;
 	}
-	public void setDriver(Driver driver) {
-		this.driver = driver;
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

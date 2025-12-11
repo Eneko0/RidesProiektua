@@ -14,20 +14,35 @@
                 <td>Izena:</td>
                 <td><h:inputText id="izena" value="#{registerBean.izena}" required="true" /></td>
             </tr>
+
             <tr>
                 <td>Email:</td>
                 <td><h:inputText id="email" value="#{registerBean.email}" required="true" /></td>
             </tr>
+
             <tr>
                 <td>Pasahitza:</td>
                 <td><h:inputSecret id="pasahitza" value="#{registerBean.pasahitza}" required="true" /></td>
             </tr>
+
+            <tr>
+                <td>Mota:</td>
+                <td>
+                    <h:selectOneMenu id="mota" value="#{registerBean.mota}">
+                        <f:selectItem itemValue="Driver" itemLabel="Driver" />
+                        <f:selectItem itemValue="Traveler" itemLabel="Traveler" />
+                    </h:selectOneMenu>
+                </td>
+            </tr>
         </table>
+
         <p>
             <h:commandButton value="Erregistratu" action="#{registerBean.erregistratu}" />
         </p>
+
         <h:messages id="mezuak" style="color:red" />
     </h:form>
+
     <h:button value="Itxi" outcome="/Index.xhtml" />
 </h:body>
 </html>

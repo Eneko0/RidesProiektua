@@ -63,9 +63,9 @@ public interface BLFacade  {
 	 */
 	public List<Date> getThisMonthDatesWithRides(String from, String to, Date date);
 	
-	public Driver checkLogin(String name, String password);
+	public User checkLogin(String name, String password);
 	
-	public Driver register(String name, String email, String password);
+	public User register(String name, String email, String password, String mota);
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.

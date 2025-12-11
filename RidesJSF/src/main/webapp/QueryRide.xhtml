@@ -4,11 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
 	<h:head>
-		<title>Queary Rides</title>
+		<title>Query Rides</title>
 	</h:head>
 	<h:body>
 		<h:form>
-			<h2>Queary Rides</h2>
+			<h2>Query Rides</h2>
 			<table>
 				<tr>
 					<td>Origin:</td>
@@ -38,9 +38,14 @@
 			<p>
 				<h:commandButton value="Search" action="#{quearyRideBean.search}" />
 
-				<h:button 
-    				value="Itxi" 
-    				outcome="#{loginBean.driver == null ? '/Index.xhtml' : '/DriverPanel.xhtml'}" />
+				<h:button
+				    value="Itxi"
+				    outcome="#{loginBean.user == null 
+				                ? '/Index.xhtml'
+				                : (loginBean.user.mota eq 'Driver'
+				                    ? '/DriverPanel.xhtml'
+				                    : '/TravelerPanel.xhtml')}" />
+
 
 			</p>
 

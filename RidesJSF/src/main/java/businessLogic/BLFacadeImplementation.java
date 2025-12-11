@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import dataAccess.HibernateDataAccess;
 import domain.Ride;
+import domain.User;
 import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
@@ -85,14 +86,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		return dates;
 	}
 	
-	public Driver checkLogin(String name, String password) {
-		Driver driver=dbManager.checkLogin(name, password);
-		return driver;
+	public User checkLogin(String name, String password) {
+		User user=dbManager.checkLogin(name, password);
+		return user;
 	}
 	
-	public Driver register(String name, String email, String password) {
-		Driver driver=dbManager.register(name, email ,password);
-		return driver;
+	public User register(String name, String email, String password, String mota) {
+		User user=dbManager.register(name, email ,password, mota);
+		return user;
 	}
 	
 	public void close() {
