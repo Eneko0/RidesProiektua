@@ -1,64 +1,67 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
-<h:head><title>Create Ride</title></h:head>
-<h:body>
-<h:form>
-<h2>Create Ride</h2>
+	<h:head>
+		<title>Create Ride</title>
+		<h:outputStylesheet name="main.css" library="css" />
+	</h:head>
+	<h:body>
+		<h:form>
+			<h2>Create Ride</h2>
 
-<h:messages globalOnly="false" />
+			<h:messages globalOnly="false" />
 
-<!-- Use JSF inputs; for layout a simple table -->
-<table>
-<tr>
-<td>Origin: </td>
-<td><h:inputText id="origin" value="#{createRideBean.origin}" required="true" /></td>
-</tr>
+			<table>
+				<tr>
+					<td>Origin:</td>
+					<td><h:inputText id="origin" value="#{createRideBean.origin}"
+							required="true" /></td>
+				</tr>
 
-<tr>
-<td>Destination: </td>
-<td><h:inputText id="destination" value="#{createRideBean.destination}" required="true" /></td>
-</tr>
+				<tr>
+					<td>Destination:</td>
+					<td><h:inputText id="destination"
+							value="#{createRideBean.destination}" required="true" /></td>
+				</tr>
 
-<tr>
-<td>Date: </td>
-<td>
-    <!-- HTML5 date input bound to the bean's dateString property. -->
-    <h:inputText id="date" value="#{createRideBean.dateString}" required="true">
-        <f:passThroughAttribute name="type" value="date" />
-    </h:inputText>
-</td>
-</tr>
+				<tr>
+					<td>Date:</td>
+					<td>
+						<!-- HTML5 date input bound to the bean's dateString property. -->
+						<h:inputText id="date" value="#{createRideBean.dateString}"
+							required="true">
+							<f:passThroughAttribute name="type" value="date" />
+						</h:inputText>
+					</td>
+				</tr>
 
-<tr>
-<td>Seats: </td>
-<td>
-    <h:inputText id="seats" value="#{createRideBean.seats}" required="true">
-        <f:convertNumber integerOnly="true" />
-    </h:inputText>
-</td>
-</tr>
+				<tr>
+					<td>Seats:</td>
+					<td><h:inputText id="seats" value="#{createRideBean.seats}"
+							required="true">
+							<f:convertNumber integerOnly="true" />
+						</h:inputText></td>
+				</tr>
 
-<tr>
-<td>Price: </td>
-<td>
-    <h:inputText id="price" value="#{createRideBean.price}" required="true">
-        <f:convertNumber/>
-    </h:inputText>
-</td>
-</tr>
+				<tr>
+					<td>Price:</td>
+					<td><h:inputText id="price" value="#{createRideBean.price}"
+							required="true">
+							<f:convertNumber />
+						</h:inputText></td>
+				</tr>
 
-</table>
+			</table>
 
-<p>
-<h:commandButton value="Create" action="#{createRideBean.create}" />
-<!-- Close button that navigates to index.xhtml without submitting the form -->
-<h:button value="Itxi" outcome="/DriverPanel.xhtml" />
-</p>
+			<p>
+				<h:commandButton value="Create" action="#{createRideBean.create}" />
+				<!-- Close button that navigates to index.xhtml without submitting the form -->
+				<h:button value="Itxi" outcome="/DriverPanel.xhtml" />
+			</p>
 
-</h:form>
-</h:body>
+		</h:form>
+	</h:body>
 </f:view>
 </html>
